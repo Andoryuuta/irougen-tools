@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\IrougenTools.Core\IrougenTools.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../../game-data/**/*.*">
+      <Link>game-data/%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+<!--  <ItemGroup>-->
+<!--    <None Include="../../game-data/"-->
+<!--          CopyToOutputDirectory="PreserveNewest"-->
+<!--          LinkBase="game-data\" />-->
+<!--  </ItemGroup>-->
+  
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    
+<!--    <PublishSingleFile>true</PublishSingleFile>-->
+<!--    <SelfContained>true</SelfContained>-->
+<!--    <RuntimeIdentifier>win-x64</RuntimeIdentifier>-->
+  </PropertyGroup>
+
+</Project>
