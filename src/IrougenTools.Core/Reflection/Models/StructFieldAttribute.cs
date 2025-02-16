@@ -1,11 +1,11 @@
 using Newtonsoft.Json;
 
-namespace IrougenTools.Core.ReflectionTypeData.Models
+namespace IrougenTools.Core.Reflection.Models
 {
-    public class FieldAttribute
+    public class StructFieldAttribute
     {
         [JsonProperty("type")]
-        public required TypeClass Type { get; set; }
+        public required StructFieldAttributeType Type { get; set; }
 
         [JsonProperty("value")]
         public required string Value { get; set; }

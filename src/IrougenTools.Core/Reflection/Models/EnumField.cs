@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace IrougenTools.Core.ReflectionTypeData.Models
+namespace IrougenTools.Core.Reflection.Models
 {
     public class EnumField
     {

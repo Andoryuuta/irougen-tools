@@ -1,6 +1,6 @@
 ﻿using System.CommandLine;
 using IrougenTools.Core;
-using IrougenTools.Core.ReflectionTypeData;
+using IrougenTools.Core.Reflection;
 
 namespace IrougenTools.CLI;
 

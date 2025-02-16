@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace IrougenTools.Core.ReflectionTypeData.Models
+namespace IrougenTools.Core.Reflection.Models
 {
     public class StructField
     {
@@ -14,6 +14,6 @@ namespace IrougenTools.Core.ReflectionTypeData.Models
         public ulong DataOffset { get; set; }
 
         [JsonProperty("field_attribute")]
-        public FieldAttribute? FieldAttribute { get; set; }
+        public StructFieldAttribute? FieldAttribute { get; set; }
     }
 }
