@@ -61,7 +61,7 @@ public class ReflectionSerializerTest
             byte[] resourceBytes = archiveFile.ReadBytes((int)pair.Location.Size);
             var resourceReader = new BinaryReader(new MemoryStream(resourceBytes));
 
-            var deserializedNode = serializer.Deserialize(ref resourceReader,
+            var deserializedNode = serializer.Deserialize(resourceReader,
                 pair.Info.TypeNameHash);
 
             

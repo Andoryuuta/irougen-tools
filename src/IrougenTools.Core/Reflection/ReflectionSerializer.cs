@@ -29,7 +29,7 @@ public class ReflectionSerializer
         return (offset + (alignment - 1)) & ~((ulong)(alignment - 1));
     }
 
-    public ReflectionNode Deserialize(ref BinaryReader reader, uint typeHash, string nodeName = "_root")
+    public ReflectionNode Deserialize(BinaryReader reader, uint typeHash, string nodeName = "_root")
     {
         // Console.WriteLine($"Deserializing nodeName:{nodeName} at offset:{reader.BaseStream.Position}");
         if (!_typeByHash1.TryGetValue(typeHash, out var reflectionType))
@@ -91,7 +91,7 @@ public class ReflectionSerializer
                         $"Unknown type for qualified name: {reflectionType.ReferencedTypeName}");
                 }
 
-                var enumNode = this.Deserialize(ref reader, enumReferencedReflectionType.Hash1, "_enum");
+                var enumNode = this.Deserialize(reader, enumReferencedReflectionType.Hash1, "_enum");
                 node.Children.Add(enumNode);
                 break;
             case "Bitmask8":
@@ -114,7 +114,7 @@ public class ReflectionSerializer
                         $"Unknown type for qualified name: {reflectionType.ReferencedTypeName}");
                 }
 
-                var typedefNode = this.Deserialize(ref reader, typedefReferencedReflectionType.Hash1, "_typedef");
+                var typedefNode = this.Deserialize(reader, typedefReferencedReflectionType.Hash1, "_typedef");
                 node.Children.Add(typedefNode);
                 break;
             case "Struct":
@@ -133,7 +133,7 @@ public class ReflectionSerializer
                     
                     //
                     var fieldBaseNodeStartPosition = reader.BaseStream.Position;
-                    var fieldBaseNode = this.Deserialize(ref reader, structReferencedReflectionType.Hash1, "_base");
+                    var fieldBaseNode = this.Deserialize(reader, structReferencedReflectionType.Hash1, "_base");
                     node.Children.Add(fieldBaseNode);
                     var fieldBaseNodeEndPosition = reader.BaseStream.Position;
                     
@@ -173,7 +173,7 @@ public class ReflectionSerializer
                     reader.BaseStream.Position = structReadStartPosition + (long)field.DataOffset;
 
                     var fieldStartOffset = reader.BaseStream.Position;
-                    var fieldNode = this.Deserialize(ref reader, fieldReflectionType.Hash1, field.Name);
+                    var fieldNode = this.Deserialize(reader, fieldReflectionType.Hash1, field.Name);
                     node.Children.Add(fieldNode);
                     var fieldEndOffset = reader.BaseStream.Position;
 
@@ -200,7 +200,7 @@ public class ReflectionSerializer
 
                 for (int i = 0; i < reflectionType.FieldsCount; i++)
                 {
-                    var staticArrayNode = this.Deserialize(ref reader, staticArrayReferencedReflectionType.Hash1,
+                    var staticArrayNode = this.Deserialize(reader, staticArrayReferencedReflectionType.Hash1,
                         $"_staticArray[{i}]");
                     node.Children.Add(staticArrayNode);
                 }
@@ -236,7 +236,7 @@ public class ReflectionSerializer
 
                 for (var i = 0; i < blobArrayCount; i++)
                 {
-                    var blobArrayNode = this.Deserialize(ref reader, blobArrayReflectionType.Hash1, $"_blobArray[{i}]");
+                    var blobArrayNode = this.Deserialize(reader, blobArrayReflectionType.Hash1, $"_blobArray[{i}]");
                     node.Children.Add(blobArrayNode);
                 }
 
@@ -278,7 +278,7 @@ public class ReflectionSerializer
                     reader.BaseStream.Position = blobOptionalBasePosition + blobOptionalRelativeOffset;
                     
                     var blobOptionalNode =
-                        this.Deserialize(ref reader, blobOptionalReferencedReflectionType.Hash1, $"_blobOptional");
+                        this.Deserialize(reader, blobOptionalReferencedReflectionType.Hash1, $"_blobOptional");
                     node.Children.Add(blobOptionalNode);
                     
                     // Restore
@@ -311,7 +311,7 @@ public class ReflectionSerializer
                     reader.BaseStream.Position = blobVariantDataBasePosition + blobVariantDataRelativeOffset;
 
                     var blobVariantNode =
-                        this.Deserialize(ref reader, blobVariantReferencedReflectionType.Hash1, $"_blobVariant");
+                        this.Deserialize(reader, blobVariantReferencedReflectionType.Hash1, $"_blobVariant");
                     node.Children.Add(blobVariantNode);
 
                     // Restore to _after_ the BlobVariant fields.
