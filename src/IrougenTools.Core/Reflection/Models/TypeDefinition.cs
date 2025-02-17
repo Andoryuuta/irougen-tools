@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IrougenTools.Core.ReflectionTypeData.Models
+namespace IrougenTools.Core.Reflection.Models
 {
     public class TypeDefinition
     {
@@ -21,34 +21,34 @@ namespace IrougenTools.Core.ReflectionTypeData.Models
         public string? ReferencedTypeName { get; set; }
 
         [JsonProperty("class_size")]
-        public ulong ClassSize { get; set; }
+        public uint ClassSize { get; set; }
 
         [JsonProperty("alignment_1")]
-        public ulong Alignment1 { get; set; }
+        public uint Alignment1 { get; set; }
 
         [JsonProperty("alignment_2")]
-        public ulong Alignment2 { get; set; }
+        public uint Alignment2 { get; set; }
 
         [JsonProperty("fields_count")]
-        public ulong FieldsCount { get; set; }
+        public uint FieldsCount { get; set; }
 
         [JsonProperty("primitive_type")]
         public required string PrimitiveType { get; set; }
 
         [JsonProperty("field_4D")]
-        public ulong Field4D { get; set; }
+        public uint Field4D { get; set; }
 
         [JsonProperty("field_4E")]
-        public ulong Field4E { get; set; }
+        public uint Field4E { get; set; }
 
         [JsonProperty("field_4F")]
-        public ulong Field4F { get; set; }
+        public uint Field4F { get; set; }
 
         [JsonProperty("hash1")]
-        public ulong Hash1 { get; set; }
+        public uint Hash1 { get; set; }
 
         [JsonProperty("hash2")]
-        public ulong Hash2 { get; set; }
+        public uint Hash2 { get; set; }
 
         [JsonProperty("struct_fields")]
         public required List<StructField> StructFields { get; set; }

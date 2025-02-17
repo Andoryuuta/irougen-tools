@@ -1,8 +1,8 @@
 using Newtonsoft.Json;
 
-namespace IrougenTools.Core.ReflectionTypeData.Models
+namespace IrougenTools.Core.Reflection.Models
 {
-    public class TypeClass
+    public class StructFieldAttributeType
     {
         [JsonProperty("namespace")]
         public required NamespaceTree Namespace { get; set; }

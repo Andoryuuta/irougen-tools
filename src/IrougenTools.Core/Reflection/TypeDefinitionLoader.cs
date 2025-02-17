@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.IO;
-using IrougenTools.Core.ReflectionTypeData.Models;
+using IrougenTools.Core.Reflection.Models;
 using Newtonsoft.Json;
 
-namespace IrougenTools.Core.ReflectionTypeData
+namespace IrougenTools.Core.Reflection
 {
     public static class TypeDefinitionLoader
     {
